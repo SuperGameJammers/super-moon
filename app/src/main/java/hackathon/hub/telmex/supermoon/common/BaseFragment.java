@@ -28,11 +28,7 @@ public abstract class BaseFragment extends Fragment {
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     bindViews(view);
-    setupActionBar(getSupportActionBar());
     initView(view, savedInstanceState);
-  }
-
-  protected void setupActionBar(ActionBar actionBar) {
   }
 
   protected void initView(View view, Bundle savedInstanceState) {
@@ -67,17 +63,13 @@ public abstract class BaseFragment extends Fragment {
     ((BaseFragmentActivity) getActivity()).replaceFragment(fragment, enter, exit);
   }
 
-  public void popConcurrentFragment() {
-    ((BaseFragmentActivity) getActivity()).popFragment();
-  }
-
   @Nullable public Toolbar getToolbar() {
     return ((BaseActivity) getActivity()).getToolbar();
   }
 
   protected abstract int getFragmentLayout();
 
-  protected void showDefaultMessageSnackBar(String text) {
+  protected void showSnackBarMessage(String text) {
     Snackbar.make(getView(), text, Snackbar.LENGTH_SHORT).show();
   }
 }

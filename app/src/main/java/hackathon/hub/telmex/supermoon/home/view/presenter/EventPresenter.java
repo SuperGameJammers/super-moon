@@ -1,8 +1,8 @@
 package hackathon.hub.telmex.supermoon.home.view.presenter;
 
-import hackathon.hub.telmex.supermoon.home.domain.model.Place;
+import hackathon.hub.telmex.supermoon.home.domain.model.Event;
 import hackathon.hub.telmex.supermoon.home.domain.usecase.UseCaseShowPlaces;
-import hackathon.hub.telmex.supermoon.home.view.contract.HomeContract;
+import hackathon.hub.telmex.supermoon.home.view.contract.EventContract;
 import java.util.List;
 import rx.Subscriber;
 
@@ -10,12 +10,12 @@ import rx.Subscriber;
  * @author Ángel Gladín
  * @since 30/07/16
  */
-public class HomePresenter implements HomeContract.Presenter {
+public class EventPresenter implements EventContract.Presenter {
   UseCaseShowPlaces mUseCase;
 
-  HomeContract.View view;
+  EventContract.View view;
 
-  public HomePresenter(HomeContract.View view) {
+  public EventPresenter(EventContract.View view) {
     this.view = view;
     this.mUseCase = new UseCaseShowPlaces();
   }
@@ -27,7 +27,7 @@ public class HomePresenter implements HomeContract.Presenter {
   @Override public void start() {
     view.showLoading();
 
-    mUseCase.executeGetDestinations(new Subscriber<List<Place>>() {
+    mUseCase.executeGetDestinations(new Subscriber<List<Event>>() {
       @Override public void onCompleted() {
         view.hideLoading();
       }
@@ -35,8 +35,8 @@ public class HomePresenter implements HomeContract.Presenter {
       @Override public void onError(Throwable e) {
       }
 
-      @Override public void onNext(List<Place> places) {
-        view.showEventsList(places);
+      @Override public void onNext(List<Event> events) {
+        view.showEventsList(events);
       }
     });
   }

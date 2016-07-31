@@ -5,17 +5,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import hackathon.hub.telmex.supermoon.R;
 import hackathon.hub.telmex.supermoon.common.BaseFragmentActivity;
-import hackathon.hub.telmex.supermoon.home.view.contract.HomeContract;
-import hackathon.hub.telmex.supermoon.home.view.fragment.HomeFragment;
+import hackathon.hub.telmex.supermoon.home.view.fragment.EventFragment;
 
-public class HomeActivity extends BaseFragmentActivity {
+public class EventActivity extends BaseFragmentActivity {
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
 
   @Override protected Fragment getFragmentInstance() {
-    return HomeFragment.newInstance();
+    return EventFragment.newInstance();
   }
 
   @Override protected int getIdFragmentContainer() {

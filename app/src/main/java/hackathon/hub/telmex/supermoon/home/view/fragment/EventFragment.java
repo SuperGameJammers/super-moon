@@ -1,5 +1,6 @@
 package hackathon.hub.telmex.supermoon.home.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,27 +10,27 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import hackathon.hub.telmex.supermoon.R;
 import hackathon.hub.telmex.supermoon.common.BaseFragment;
-import hackathon.hub.telmex.supermoon.home.domain.model.Place;
-import hackathon.hub.telmex.supermoon.home.view.adapter.PlaceAdapter;
-import hackathon.hub.telmex.supermoon.home.view.contract.HomeContract;
-import hackathon.hub.telmex.supermoon.home.view.presenter.HomePresenter;
-import hackathon.hub.telmex.supermoon.home.widget.ItemOffsetDecoration;
+import hackathon.hub.telmex.supermoon.home.domain.model.Event;
+import hackathon.hub.telmex.supermoon.home.view.activity.PlaceActivity;
+import hackathon.hub.telmex.supermoon.home.view.adapter.EventAdapter;
+import hackathon.hub.telmex.supermoon.home.view.contract.EventContract;
+import hackathon.hub.telmex.supermoon.home.view.presenter.EventPresenter;
 import java.util.List;
 
 /**
  * @author Ángel Gladín
  * @since 30/07/16
  */
-public class HomeFragment extends BaseFragment implements HomeContract.View {
+public class EventFragment extends BaseFragment implements EventContract.View {
 
   @BindView(R.id.progress_home) ProgressBar mProgressBar;
   @BindView(R.id.list_events) RecyclerView mList;
-  HomeContract.Presenter mPresenter;
+  EventContract.Presenter mPresenter;
 
-  PlaceAdapter mAdapter;
+  EventAdapter mAdapter;
 
-  public static HomeFragment newInstance() {
-    return new HomeFragment();
+  public static EventFragment newInstance() {
+    return new EventFragment();
   }
 
   @Override protected void initView(View view, Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
   }
 
   private void initializePresenter() {
-    mPresenter = new HomePresenter(this);
+    mPresenter = new EventPresenter(this);
     mPresenter.start();
   }
 
@@ -58,8 +59,8 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     mProgressBar.setVisibility(View.INVISIBLE);
   }
 
-  @Override public void showEventsList(List<Place> l) {
-    mAdapter = new PlaceAdapter(getContext(), mPresenter);
+  @Override public void showEventsList(List<Event> l) {
+    mAdapter = new EventAdapter(getContext(), mPresenter);
     mList.setAdapter(mAdapter);
     mList.setLayoutManager(getGridLayoutManager());
     //mList.addItemDecoration(new ItemOffsetDecoration(mList.getContext(), R.dimen.item_decoration));
@@ -79,6 +80,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
   }
 
   @Override public void startEventActivity(String tittle, String image) {
-    //showDefaultMessageSnackBar("asdlkasdklj");
+    startActivity(new Intent(getContext(), PlaceActivity.class).putExtra("tittle", tittle)
+        .putExtra("image", image));
   }
 }

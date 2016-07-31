@@ -45,10 +45,10 @@ public class PlaceActivity extends BaseActivity implements PlaceContract.View{
   }
 
   private void initializeList() {
-    mAdapter = new PlaceAdapter(getApplicationContext(), mPresenter);
+    mAdapter = new PlaceAdapter(getContext(), mPresenter);
+
+    mList.setLayoutManager(new LinearLayoutManager(getContext()));
     mList.setAdapter(mAdapter);
-    mList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-    mList.setItemAnimator(new DefaultItemAnimator());
   }
 
   @Override protected int setLayout() {
@@ -68,6 +68,6 @@ public class PlaceActivity extends BaseActivity implements PlaceContract.View{
   }
 
   @Override public Context getContext() {
-    return null;
+    return getApplicationContext();
   }
 }

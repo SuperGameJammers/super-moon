@@ -38,4 +38,14 @@ public class Place {
   public double getLatitude() {
     return latitude;
   }
+
+  @Override public String toString() {
+    return "Place{" +
+        "tittle='" + tittle + '\'' +
+        ", description='" + description + '\'' +
+        ", image='" + image + '\'' +
+        ", longitude=" + longitude +
+        ", latitude=" + latitude +
+        '}';
+  }
 }

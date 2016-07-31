@@ -20,7 +20,7 @@
         android:src="@mipmap/ic_launcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/image_place"
+        android:id="@+id/image_item_event"
         />
     <View
         android:id="@+id/view"
@@ -32,7 +32,7 @@
         >
     </View>
     <TextView
-        android:id="@+id/label_place"
+        android:id="@+id/label_event_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

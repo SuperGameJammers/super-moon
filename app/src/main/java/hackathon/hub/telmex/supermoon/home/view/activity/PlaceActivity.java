@@ -15,6 +15,8 @@ import hackathon.hub.telmex.supermoon.home.domain.model.Place;
 import hackathon.hub.telmex.supermoon.home.view.adapter.EventAdapter;
 import hackathon.hub.telmex.supermoon.home.view.adapter.PlaceAdapter;
 import hackathon.hub.telmex.supermoon.home.view.contract.PlaceContract;
+import hackathon.hub.telmex.supermoon.home.view.presenter.EventPresenter;
+import hackathon.hub.telmex.supermoon.home.view.presenter.PlacePresenter;
 import java.util.List;
 
 public class PlaceActivity extends BaseActivity implements PlaceContract.View{
@@ -30,12 +32,15 @@ public class PlaceActivity extends BaseActivity implements PlaceContract.View{
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     Glide.with(imageView.getContext())
         .load(getIntent().getStringExtra("image"))
         .centerCrop()
         .into(imageView);
-
     initializeList();
+
+    mPresenter = new PlacePresenter(this);
+    mPresenter.start();
 
   }
 
@@ -51,7 +56,14 @@ public class PlaceActivity extends BaseActivity implements PlaceContract.View{
   }
 
   @Override public void showPlaceList(List<Place> l) {
+
     mAdapter.setAll(l);
+
+  }
+
+  @Override
+  public void startEventActivity(String tittle, String description, String image, double latitude,
+      double longitude) {
 
   }
 

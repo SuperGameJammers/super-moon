@@ -42,7 +42,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PictureHolde
   }
 
   @Override public PlaceAdapter.PictureHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View viewItem = inflater.inflate(R.layout.item_event, parent, false);
+    View viewItem = inflater.inflate(R.layout.item_place, parent, false);
     return new PlaceAdapter.PictureHolder(viewItem, mPresenter);
   }
 
@@ -56,8 +56,9 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PictureHolde
 
   public static class PictureHolder extends RecyclerView.ViewHolder
       implements View.OnClickListener {
-    @BindView(R.id.label_place) TextView mLabelTittle;
-    @BindView(R.id.image_event) ImageView mImagePlace;
+    @BindView(R.id.label_tittle_place) TextView mLabelTittle;
+    @BindView(R.id.label_place_description) TextView mLabelDescription;
+    @BindView(R.id.image_place) ImageView mImagePlace;
 
     private PlaceContract.Presenter mPresenter;
     private Place pla;
@@ -78,6 +79,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PictureHolde
       this.pla = pla;
       mLabelTittle.setText(pla.getTittle());
       Glide.with(mImagePlace.getContext()).load(pla.getImage()).centerCrop().into(mImagePlace);
+      mLabelDescription.setText(pla.getDescription());
     }
   }
 }

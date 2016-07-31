@@ -2,8 +2,10 @@ package hackathon.hub.telmex.supermoon.common;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hackathon.hub.telmex.supermoon.R;
@@ -22,10 +24,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     setupToolbar();
   }
 
+
   protected void setupToolbar() {
-    if (mToolbar != null) {
       setSupportActionBar(mToolbar);
-    }
   }
 
   private void bindViews() {

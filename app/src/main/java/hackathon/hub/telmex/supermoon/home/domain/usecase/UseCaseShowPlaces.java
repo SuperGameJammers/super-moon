@@ -32,14 +32,12 @@ public class UseCaseShowPlaces {
 
   Observable<List<Place>> buildObservableUseCaseGetDestinations() {
     return Observable.create((Observable.OnSubscribe<List<Place>>) subscriber -> {
-      final String URL =
-          "https://material-design.storage.googleapis.com/publish/material_v_8/material_ext_publish/0Bx4BSt6jniD7dkRYelJkeklqWFU/materialdesign_principles_motion.png";
       List<Place> placeList = new ArrayList<>();
-      placeList.add(new Place("Museo", URL));
-      placeList.add(new Place("Concierto", URL));
-      placeList.add(new Place("Especiales", URL));
-      placeList.add(new Place("Talleres", URL));
-      placeList.add(new Place("Teatro", URL));
+      placeList.add(new Place("Museo", "http://svcdn.simpleviewinc.com/v3/cache/chicago/334C81AC039A9866849B2FA34D3F5F2C.jpg"));
+      placeList.add(new Place("Concierto", "http://cdn.mxcity.mx/wp-content/uploads/2015/12/julio-20151.jpg"));
+      placeList.add(new Place("Especiales", "http://masaryk.tv/wp-content/uploads/2015/01/mickeys-magic-show.jpg"));
+      placeList.add(new Place("Talleres", "http://www.unitek.com/training/blog/images/it-blog.jpg"));
+      placeList.add(new Place("Teatro", "http://www.garuyo.com/web/media/images/images/47'.jpg"));
       subscriber.onNext(placeList);
       subscriber.onCompleted();
     }).delay(1, TimeUnit.SECONDS);
